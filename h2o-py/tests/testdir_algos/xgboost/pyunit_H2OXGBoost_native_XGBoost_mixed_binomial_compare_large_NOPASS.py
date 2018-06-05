@@ -116,7 +116,7 @@ def genDMatrix(h2oFrame, enumList, xlist, yresp):
         pandaFtrain.drop([cname], axis=1, inplace=True)
         pandaFtrain = pd.concat([ctemp, pandaFtrain], axis=1)
 
-    c0 = pd.get_dummies(pandaFtrain[yresp], prefix=yresp, drop_first=True)
+    c0= h2oFrame[yresp].asnumeric().as_data_frame(use_pandas=True, header=True)
     pandaFtrain.drop([yresp], axis=1, inplace=True)
     pandaF = pd.concat([c0, pandaFtrain], axis=1)
     pandaF.rename(columns={c0.columns[0]:yresp}, inplace=True)
