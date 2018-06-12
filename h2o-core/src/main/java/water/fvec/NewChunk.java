@@ -1196,16 +1196,11 @@ public class NewChunk extends Chunk {
       if (fitLong)  // once set to false don't want to reset back to true
         fitLong = ll.compareTo(MAX)<=0 && ll.compareTo(MIN)>=0;
 
-      if (x>=0 && fitLong) {  // set parameters for long
-        if( ll.compareTo(min_l)==-1 ) { min=d; min_l=ll; llo=l; xlo=x; }
-        if( ll.compareTo(max_l)== 1 ) { max=d; max_l=ll; lhi=l; xhi=x; }
-      }
-
       if ( x >=0 && fitLong ) { // use long if integer and fit inside long format
         if( ll.compareTo(min_l)==-1 ) { min=d; min_l=ll; llo=l; xlo=x; } //
         if( ll.compareTo(max_l)== 1 ) { max=d; max_l=ll; lhi=l; xhi=x; }
       } else {  // perform update for doubles, exclude updates for long here
-        if( d < min ) { min = d; llo=l; xlo=x; }
+        if( d < min ) { min = d; llo=l; xlo=x; }  // no need to update min_l or max_l if it does not fit long
         if( d > max ) { max = d; lhi=l; xhi=x; }
       }
 
