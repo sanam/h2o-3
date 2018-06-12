@@ -1193,9 +1193,10 @@ public class NewChunk extends Chunk {
         hasZero = true;
         continue;
       }
-      if (fitLong)  // once set don't want to reset
+      if (fitLong)  // once set to false don't want to reset back to true
         fitLong = ll.compareTo(MAX)<=0 && ll.compareTo(MIN)>=0;
-      if( x >=0 && ((long)d != ll.longValue()) && fitLong) { // set the case for lossy conversion, use long, but can overflow too
+
+      if (x >=0 && fitLong) { // use long if integer and fit inside long format
         if( ll.compareTo(min_l)==-1 ) { min=d; min_l=ll; llo=l; xlo=x; } //
         if( ll.compareTo(max_l)== 1 ) { max=d; max_l=ll; lhi=l; xhi=x; }
       } else {

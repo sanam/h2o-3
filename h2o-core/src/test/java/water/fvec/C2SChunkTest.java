@@ -11,7 +11,6 @@ import water.util.PrettyPrint;
 
 import java.io.IOException;
 import java.util.Arrays;
-
 import static org.junit.Assert.assertTrue;
 
 public class C2SChunkTest extends TestUtil {
